@@ -2,12 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Nito.AsyncEx.AsyncDiagnostics;
+using Xunit;
 
 [assembly: AsyncDiagnosticAspect]
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         MainAsync(args).Wait();
     }
@@ -21,7 +22,7 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToAsyncDiagnosticString());
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 
@@ -39,4 +40,37 @@ class Program
         var task2 = Task.Run(() => { throw new InvalidOperationException(message); });
         await Task.WhenAll(task1, task2);
     }
+}
+
+public class MyUnitTests
+{
+    [Fact]
+    public void TestOne()
+    {
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+    }
+
+    [Fact]
+    public void TestTwo()
+    {
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+    }
+    [Fact]
+    public void TestThree()
+    {
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+        Program.Main(null);
+    }
+
 }
